@@ -39,9 +39,10 @@ class CategoryActivity : AppCompatActivity() {
             )
 
             Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(this, QuestionActivity::class.java)
-                intent.putExtra("category", "random")
-                startActivity(intent)
+                val intentCategory = Intent(this, QuestionActivity::class.java)
+                intentCategory.putExtra("category", "random")
+                intentCategory.putExtra("username", intent.getStringExtra("username"))
+                startActivity(intentCategory)
             }, 1000)
         }
     }

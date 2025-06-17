@@ -57,16 +57,5 @@ class MainActivity : AppCompatActivity() {
         )
             .fallbackToDestructiveMigration()
             .build()
-
-        val leaderboardDao = db.leaderboardDao()
-
-        val newEntry = LeaderboardEntry(
-            username = "nonof",
-            score = 42
-        )
-
-        Thread {
-            leaderboardDao.insert(newEntry)
-        }.start()
     }
 }

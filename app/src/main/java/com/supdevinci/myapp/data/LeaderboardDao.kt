@@ -6,9 +6,6 @@ import com.supdevinci.myapp.model.LeaderboardEntry
 @Dao
 interface LeaderboardDao {
 
-    @Query("SELECT * FROM leaderboard WHERE deletedAt IS NULL ORDER BY score DESC")
-    fun getAllActiveEntries(): List<LeaderboardEntry>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entry: LeaderboardEntry)
 
@@ -17,4 +14,7 @@ interface LeaderboardDao {
 
     @Query("UPDATE leaderboard SET deletedAt = :timestamp WHERE id = :id")
     fun softDelete(id: Int, timestamp: Long)
+
+    @Query("SELECT * FROM leaderboard WHERE deletedAt IS NULL ORDER BY score DESC LIMIT :limit")
+    fun getTopScores(limit: Int): List<LeaderboardEntry>
 }
