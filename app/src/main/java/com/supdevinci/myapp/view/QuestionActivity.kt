@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -43,19 +44,9 @@ class QuestionActivity : AppCompatActivity() {
             } else {
                 questionTextView.text = decodeBase64(questions[0].question)
                 response = decodeBase64(questions[0].correct_answer)
-                val allResponses = (questions[0].incorrect_answers + questions[0].correct_answer)
-                    .map { decodeBase64(it) }
-                    .shuffled()
-
-                adapter = QAAdapter(allResponses, response) { clickedResponse ->
-                    println("Tu as cliqué : $clickedResponse (réponse : $response)")
-                }
-
                 showQuestionAt(0, questions)
 
                 recyclerView.adapter = adapter
-
-                adapter.updateData(allResponses)
             }
         }
 
@@ -75,7 +66,7 @@ class QuestionActivity : AppCompatActivity() {
 
     private fun showQuestionAt(index: Int, questions: List<Question>) {
         if (index >= questions.size) {
-            Toast.makeText(this, "Fin des questions !", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Score : $score / ${questions.size}", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -89,18 +80,16 @@ class QuestionActivity : AppCompatActivity() {
         val questionTextView = findViewById<TextView>(R.id.questionText)
         questionTextView.text = decodedQuestion
 
+        //Log.d("TE", "Réponse correcte affichée avant la sélection : $correctAnswer")
+
         adapter = QAAdapter(allResponses, correctAnswer) { clickedResponse ->
             println("Tu as cliqué : $clickedResponse (réponse : $correctAnswer)")
-            if(clickedResponse==response){
-                score +=1
+            if (clickedResponse == correctAnswer) {
+                score++
             }
             Handler(Looper.getMainLooper()).postDelayed({
                 showQuestionAt(index + 1, questions)
             }, 1000)
-            /*
-            if(questions.size>=index+1){
-
-            }*/
         }
 
         recyclerView.adapter = adapter
