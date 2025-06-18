@@ -9,12 +9,12 @@ interface ApiService {
     @GET("api.php?amount=0&encode=base64")
     fun getNull(): Call<QuestionResponse>
 
-    @GET("api.php?amount=3&encode=base64")
+    @GET("api.php?amount=40&encode=base64")
     fun getRandomQuestions(): Call<QuestionResponse>
 
     @GET("api.php")
     fun getCategorieQuestions(
-        @Query("amount") amount: Int = 10,
+        @Query("amount") amount: Int = 20,
         @Query("category") category: Int,
         @Query("encode") encode: String = "base64"
     ): Call<QuestionResponse>

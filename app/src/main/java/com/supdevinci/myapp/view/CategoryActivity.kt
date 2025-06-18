@@ -6,13 +6,17 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.supdevinci.myapp.R
 import com.supdevinci.myapp.data.VarProvider
+import com.supdevinci.myapp.view.adapter.CategoryAdapter
 
 class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,32 +36,12 @@ class CategoryActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val random = findViewById<Button>(R.id.CategoryRandom)
-
-        random.setOnClickListener {
-            random.background = AppCompatResources.getDrawable(this,
-                R.drawable.button_background_green
-            )
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intentCategory = Intent(this, QuestionActivity::class.java)
-                VarProvider.category="random"
-                startActivity(intentCategory)
-            }, 1000)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val adapter = CategoryAdapter(VarProvider.categoryList) { selectedKey ->
+            Toast.makeText(this, "Catégorie sélectionnée : $selectedKey", Toast.LENGTH_SHORT).show()
         }
 
-        val category = findViewById<Button>(R.id.categoryMythology)
-
-        category.setOnClickListener {
-            category.background = AppCompatResources.getDrawable(this,
-                R.drawable.button_background_green
-            )
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intentCategory = Intent(this, QuestionActivity::class.java)
-                VarProvider.category="mythologie"
-                startActivity(intentCategory)
-            }, 1000)
-        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 }
