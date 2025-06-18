@@ -19,6 +19,8 @@ import com.supdevinci.myapp.model.LeaderboardEntry
 import com.supdevinci.myapp.model.Question
 import com.supdevinci.myapp.view.adapter.QAAdapter
 import com.supdevinci.myapp.viewmodel.QuestionViewModel
+import android.widget.ImageView
+
 
 class QuestionActivity : AppCompatActivity() {
 
@@ -99,6 +101,12 @@ class QuestionActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
         adapter.updateData(allResponses)
+
+        val logo = findViewById<ImageView>(R.id.logo)
+        logo.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun saveScoreToDatabase(questionsSize: Int) {

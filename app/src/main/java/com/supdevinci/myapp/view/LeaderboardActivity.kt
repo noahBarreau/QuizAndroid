@@ -1,16 +1,18 @@
 package com.supdevinci.myapp.view
 
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
 import androidx.room.Room
 import com.supdevinci.myapp.R
 import com.supdevinci.myapp.data.AppDatabase
-import com.supdevinci.myapp.model.LeaderboardEntry
 import com.supdevinci.myapp.view.adapter.LeaderboardAdapter
 
 class LeaderboardActivity : AppCompatActivity() {
@@ -25,6 +27,12 @@ class LeaderboardActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerViewLeaderboard)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val separator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        ContextCompat.getDrawable(this, R.drawable.separator)?.let {
+            separator.setDrawable(it)
+            recyclerView.addItemDecoration(separator)
+        }
 
         val db = Room.databaseBuilder(
             applicationContext,
@@ -47,5 +55,11 @@ class LeaderboardActivity : AppCompatActivity() {
                 }
             }
         }.start()
+
+        val logo = findViewById<ImageView>(R.id.logo)
+        logo.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
