@@ -22,7 +22,7 @@ class QuestionRepository {
     fun fetchQuestions(category: String): Call<QuestionResponse> {
         return when(category) {
             "random" -> apiService.getRandomQuestions()
-            else -> apiService.getNull() // adapter aussi si besoin
+            else -> apiService.getNull()
         }
     }
 }

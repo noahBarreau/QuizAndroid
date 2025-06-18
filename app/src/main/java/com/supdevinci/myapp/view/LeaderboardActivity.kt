@@ -37,7 +37,7 @@ class LeaderboardActivity : AppCompatActivity() {
         val leaderboardDao = db.leaderboardDao()
 
         Thread {
-            val topScores = leaderboardDao.getTopScores(10)  // Obtenir les 10 premiers scores
+            val topScores = leaderboardDao.getTopScores(10)
             runOnUiThread {
                 if (topScores.isNullOrEmpty()) {
                     Toast.makeText(this, "Pas encore de scores.", Toast.LENGTH_SHORT).show()

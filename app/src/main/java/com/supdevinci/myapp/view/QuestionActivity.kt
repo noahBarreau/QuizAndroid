@@ -40,7 +40,7 @@ class QuestionActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.responseDisplay)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        username = intent.getStringExtra("username") ?: "Anonymous"  // Récupérer le username
+        username = intent.getStringExtra("username") ?: "Anonymous"
 
         viewModel.questions.observe(this) { questions ->
             if (questions.isNullOrEmpty()) {
