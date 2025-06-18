@@ -20,6 +20,7 @@ import com.supdevinci.myapp.model.Question
 import com.supdevinci.myapp.view.adapter.QAAdapter
 import com.supdevinci.myapp.viewmodel.QuestionViewModel
 import android.widget.ImageView
+import com.supdevinci.myapp.data.VarProvider
 
 
 class QuestionActivity : AppCompatActivity() {
@@ -29,7 +30,6 @@ class QuestionActivity : AppCompatActivity() {
     private lateinit var adapter: QAAdapter
     private var response: String = ""
     private var score: Int = 0
-    private lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +41,6 @@ class QuestionActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.responseDisplay)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        username = intent.getStringExtra("username") ?: "Anonymous"
 
         viewModel.questions.observe(this) { questions ->
             if (questions.isNullOrEmpty()) {
@@ -57,8 +55,7 @@ class QuestionActivity : AppCompatActivity() {
             }
         }
 
-        val category = intent.getStringExtra("category").takeUnless { it.isNullOrEmpty() } ?: "random"
-        viewModel.loadQuestions(category)
+        viewModel.loadQuestions(VarProvider.category)
     }
 
     private fun decodeBase64(input: String): String {
@@ -119,7 +116,7 @@ class QuestionActivity : AppCompatActivity() {
             .build()
 
         val leaderboardDao = db.leaderboardDao()
-        val newEntry = LeaderboardEntry(username = username, score = (score*100)/questionsSize)
+        val newEntry = LeaderboardEntry(username = VarProvider.username, score = (score*100)/questionsSize)
 
         Thread {
             leaderboardDao.insert(newEntry)

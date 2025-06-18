@@ -17,6 +17,7 @@ import androidx.room.Room
 import com.supdevinci.myapp.data.AppDatabase
 import com.supdevinci.myapp.model.LeaderboardEntry
 import androidx.appcompat.widget.AppCompatImageButton
+import com.supdevinci.myapp.data.VarProvider
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,9 +36,9 @@ class MainActivity : AppCompatActivity() {
         val enterEmail = findViewById<EditText>(R.id.enterEmail)
 
         validerButton.setOnClickListener {
-            val usernameText = enterEmail.text.toString().trim()
+            VarProvider.username= enterEmail.text.toString().trim()
 
-            if (usernameText.isEmpty()) {
+            if (VarProvider.username.isEmpty()) {
                 Toast.makeText(this, "Veuillez entrer un pseudo", Toast.LENGTH_SHORT).show()
             } else {
                 validerButton.background = AppCompatResources.getDrawable(this,
@@ -46,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     val intent = Intent(this, CategoryActivity::class.java)
-                    intent.putExtra("username", usernameText)
                     startActivity(intent)
                 }, 1000)
             }

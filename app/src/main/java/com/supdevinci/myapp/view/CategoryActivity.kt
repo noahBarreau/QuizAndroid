@@ -12,6 +12,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.supdevinci.myapp.R
+import com.supdevinci.myapp.data.VarProvider
 
 class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +41,7 @@ class CategoryActivity : AppCompatActivity() {
 
             Handler(Looper.getMainLooper()).postDelayed({
                 val intentCategory = Intent(this, QuestionActivity::class.java)
-                intentCategory.putExtra("category", "random")
-                intentCategory.putExtra("username", intent.getStringExtra("username"))
+                VarProvider.category="random"
                 startActivity(intentCategory)
             }, 1000)
         }

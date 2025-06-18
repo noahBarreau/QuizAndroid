@@ -34,6 +34,17 @@
         app:srcCompat="@drawable/logo" />
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLeaderboard"
+        android:layout_width="338dp"
+        android:layout_height="431dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.018" />
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="338dp"
@@ -46,7 +57,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.02">
+        app:layout_constraintVertical_bias="0.105">
 
         <TextView
             android:layout_width="0dp"
@@ -74,15 +85,4 @@
             android:textColor="#000"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewLeaderboard"
-        android:layout_width="338dp"
-        android:layout_height="431dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
