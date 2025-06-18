@@ -16,6 +16,8 @@ import com.supdevinci.myapp.R
 import androidx.room.Room
 import com.supdevinci.myapp.data.AppDatabase
 import com.supdevinci.myapp.model.LeaderboardEntry
+import androidx.appcompat.widget.AppCompatImageButton
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,5 +59,11 @@ class MainActivity : AppCompatActivity() {
         )
             .fallbackToDestructiveMigration()
             .build()
+
+        val buttonLeaderboard = findViewById<AppCompatImageButton>(R.id.buttonLeaderboard)
+        buttonLeaderboard.setOnClickListener {
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
