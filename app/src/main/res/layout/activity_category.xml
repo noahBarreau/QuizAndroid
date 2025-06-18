@@ -45,5 +45,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.213" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/categoryMythology"
+        android:layout_width="283dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="432dp"
+        android:background="@drawable/button_background_red"
+        android:text="Mythologie"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CategoryRandom" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

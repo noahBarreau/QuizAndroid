@@ -45,5 +45,19 @@ class CategoryActivity : AppCompatActivity() {
                 startActivity(intentCategory)
             }, 1000)
         }
+
+        val category = findViewById<Button>(R.id.categoryMythology)
+
+        category.setOnClickListener {
+            category.background = AppCompatResources.getDrawable(this,
+                R.drawable.button_background_green
+            )
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intentCategory = Intent(this, QuestionActivity::class.java)
+                VarProvider.category="mythologie"
+                startActivity(intentCategory)
+            }, 1000)
+        }
     }
 }

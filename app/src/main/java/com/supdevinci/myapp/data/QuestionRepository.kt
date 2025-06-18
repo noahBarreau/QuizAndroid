@@ -22,6 +22,7 @@ class QuestionRepository {
     fun fetchQuestions(category: String): Call<QuestionResponse> {
         return when(category) {
             "random" -> apiService.getRandomQuestions()
+            "mythologie"-> apiService.getCategorieQuestions(category = 20)
             else -> apiService.getNull()
         }
     }
