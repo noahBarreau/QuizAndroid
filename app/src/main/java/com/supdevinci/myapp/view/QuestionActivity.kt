@@ -70,7 +70,9 @@ class QuestionActivity : AppCompatActivity() {
     private fun showQuestionAt(index: Int, questions: List<Question>) {
         if (index >= questions.size) {
             Toast.makeText(this, "Score : $score / ${questions.size}", Toast.LENGTH_LONG).show()
-            saveScoreToDatabase(questions.size)
+            if(VarProvider.category=="random"){
+                saveScoreToDatabase(questions.size)
+            }
 
             val intent = Intent(this, LeaderboardActivity::class.java)
             startActivity(intent)
